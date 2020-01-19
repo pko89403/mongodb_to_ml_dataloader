@@ -1,0 +1,16 @@
+version: "3.2" # 버전 정보를 작성한다.
+
+services: # 서비스 목록을 정의한다.
+        mongodb: # 서비스의 이름을 정의한다.
+                image : mongo # 해당 서비스에서 사용할 이미지
+                restart : always # container를 실행할 때 항상 이미 수행중이라면 재시작
+                environment: # 환경 변수를 정의한다
+                        MONGO_INITDB_ROOT_USERNAME : root
+                        MONGO_INITDB_ROOT_PASSWORD : root12345!
+                volumes: 
+                        - type: bind
+                          source : mongodb # 볼륨 컨테이너 생성 
+                          target : /data/db # 몽고디비 내부 경로
+                container_name: "mongodb_ksw200119"
+                ports : 
+                        - "27017:27017" # 몽고디비 기본 포
